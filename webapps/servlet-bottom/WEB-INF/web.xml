@@ -1,0 +1,264 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<web-app version="3.0"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+  <!--配置多个servlet，调用通过的url-pattern，执行不同的servlet-->
+
+  <display-name>Archetype Created Web Application</display-name>
+  
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <!--
+    通过context-param定义全局的初始化参数
+  -->
+  <context-param>
+    <param-name>contextName</param-name>
+    <param-value>我是全局初始化参数</param-value>
+  </context-param>
+  
+  <servlet>
+    <servlet-name>oneservlet</servlet-name>
+    <servlet-class>com.servlet.day01.OneServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>oneservlet</servlet-name>
+    <url-pattern>/one</url-pattern>
+  </servlet-mapping>
+
+  <!--由于url-pattern是存放在一个map中，所以不允许url-pattern是重复的-->
+  <servlet>
+    <servlet-name>twoservlet</servlet-name>
+    <servlet-class>com.servlet.day01.TwoServlet</servlet-class>
+      <!--
+        设置初始化参数，可以通过ServletConfig参数获取该初始化参数
+        这里的参数仅限本servlet可以调用，其他servlet获取不到该初始化参数
+        可以定义全局的初始化参数
+      -->
+    <init-param>
+        <param-name>initParamName</param-name>
+        <param-value>initParamValue</param-value>
+    </init-param>
+    <!--在容器启动的时候是不创建servlet实例的，但是可以通过该配置是容器启动的时候就创建该servlet实例-->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>twoservlet</servlet-name>
+    <url-pattern>/two</url-pattern>
+  </servlet-mapping>
+
+  <!--
+     设置域属性和域初始化参数
+  -->
+  <servlet>
+    <servlet-name>threeservlet</servlet-name>
+    <servlet-class>com.servlet.day01.ThreeServlet</servlet-class>
+    <init-param>
+      <param-name>sname</param-name>
+      <param-value>zhangsan</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>threeservlet</servlet-name>
+    <url-pattern>/three</url-pattern>
+  </servlet-mapping>
+
+  <!--
+    测试ServletContext
+    包括：Attribute
+    包括：ContextPath
+    包括：RealPath
+    -->
+  <servlet>
+    <servlet-name>fourservlet</servlet-name>
+    <servlet-class>com.servlet.day01.FourServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>fourservlet</servlet-name>
+    <url-pattern>/four</url-pattern>
+  </servlet-mapping>
+
+  <!--
+    一个servlet配置多个url-pattern
+    只要有一个url-pattern能够匹配即可
+    -->
+  <servlet>
+    <servlet-name>fiveservlet</servlet-name>
+    <servlet-class>com.servlet.day01.FiveServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>fiveservlet</servlet-name>
+    <url-pattern>/five/five/five/five</url-pattern>
+    <url-pattern>/f/f/f/f/f</url-pattern>
+    <url-pattern>/i</url-pattern>
+  </servlet-mapping>
+
+  <!--
+    使用通配符的方式进行匹配
+    可以匹配所有的
+    -->
+  <servlet>
+    <servlet-name>sixservlet</servlet-name>
+    <servlet-class>com.servlet.day01.SixServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sixservlet</servlet-name>
+    <url-pattern>/six/*</url-pattern>
+  </servlet-mapping>
+
+  <!--
+    GenericServlet
+  -->
+  <servlet>
+    <servlet-name>sevenservlet</servlet-name>
+    <servlet-class>com.servlet.day02.SevenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sevenservlet</servlet-name>
+    <url-pattern>/seven/*</url-pattern>
+  </servlet-mapping>
+
+  <!--
+    强转
+    HttpServletRequest
+    HttpServletResponse
+  -->
+  <servlet>
+    <servlet-name>eightservlet</servlet-name>
+    <servlet-class>com.servlet.day03.EightServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>eightservlet</servlet-name>
+    <url-pattern>/eight/*</url-pattern>
+  </servlet-mapping>
+
+  <!--
+    细说HttpServletRequest
+  -->
+  <servlet>
+    <servlet-name>nineservlet</servlet-name>
+    <servlet-class>com.servlet.day03.NineServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>nineservlet</servlet-name>
+    <url-pattern>/nine/*</url-pattern>
+  </servlet-mapping>
+
+<!--
+  请求转发
+-->
+  <servlet>
+    <servlet-name>elevenservlet</servlet-name>
+    <servlet-class>com.servlet.day04.ElevenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>elevenservlet</servlet-name>
+    <url-pattern>/eleven/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>twelveservlet</servlet-name>
+    <servlet-class>com.servlet.day04.TwelveServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>twelveservlet</servlet-name>
+    <url-pattern>/twelve/*</url-pattern>
+  </servlet-mapping>
+
+<!--
+  编码问题
+-->
+  <servlet>
+    <servlet-name>thirteenservlet</servlet-name>
+    <servlet-class>com.servlet.day04.ThirteenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>thirteenservlet</servlet-name>
+    <url-pattern>/thirteen/*</url-pattern>
+  </servlet-mapping>
+
+
+  <!--
+    HttpServletResponse返回值到页面
+  -->
+  <servlet>
+    <servlet-name>fourteenservlet</servlet-name>
+    <servlet-class>com.servlet.day04.FourteenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>fourteenservlet</servlet-name>
+    <url-pattern>/fourteen/*</url-pattern>
+  </servlet-mapping>
+
+  <!--
+    HttpServletResponse返回状态码
+  -->
+  <servlet>
+    <servlet-name>fifteenservlet</servlet-name>
+    <servlet-class>com.servlet.day04.FifteenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>fifteenservlet</servlet-name>
+    <url-pattern>/fifteen/*</url-pattern>
+  </servlet-mapping>
+
+  <!--
+    重定向
+  -->
+  <servlet>
+    <servlet-name>sixteenservlet</servlet-name>
+    <servlet-class>com.servlet.day04.SixteenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sixteenservlet</servlet-name>
+    <url-pattern>/sixteen/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>seventeenservlet</servlet-name>
+    <servlet-class>com.servlet.day04.SeventeenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>seventeenservlet</servlet-name>
+    <url-pattern>/seventeen/*</url-pattern>
+  </servlet-mapping>
+
+  <!--
+    定时刷新，重定向
+  -->
+  <servlet>
+    <servlet-name>eighteenservlet</servlet-name>
+    <servlet-class>com.servlet.day04.EighteenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>eighteenservlet</servlet-name>
+    <url-pattern>/eighteen/*</url-pattern>
+  </servlet-mapping>
+
+  <!--
+    Cookie
+  -->
+  <servlet>
+    <servlet-name>nineteenservlet</servlet-name>
+    <servlet-class>com.servlet.day05.NineteenServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>nineteenservlet</servlet-name>
+    <url-pattern>/nineteen/*</url-pattern>
+  </servlet-mapping>
+
+  <!--
+    cookie的存活时间
+  -->
+
+  <servlet>
+    <servlet-name>twentyservlet</servlet-name>
+    <servlet-class>com.servlet.day05.TwentyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>twentyservlet</servlet-name>
+    <url-pattern>/twenty/*</url-pattern>
+  </servlet-mapping>
+
+</web-app>

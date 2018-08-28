@@ -1,0 +1,48 @@
+## 1、调试Tomcat的访问路径
+http://127.0.0.1:8080/examples/
+
+## 2、参考文章
+http://developer.51cto.com/art/201207/346156.htm
+
+http://www.jianshu.com/p/9e3f99f2d5bb
+##源码运行环境搭建
+http://tyrion.iteye.com/blog/1903608
+
+
+## 3、配置Tomcat 启动类
+点击菜单栏 Run-Edit configurations...，点击加号新建配置项Application Configuration，名称随意填写，
+如tomcat_7_0_run，Main Class选择org.apache.catalina.startup.Bootstrap，VM options中填入：
+-Dcatalina.home="D:\Tomcat7-Src\tomcatsrc\lunch"
+
+
+-Dcatalina.home="D:\TomcatSrc7.0\tomcatsrc\lunch"
+
+
+-------------------------------------------
+tomcat将该工程打包成不同的15个jar包
+通过maven打包只是一个jar包
+所以如果要替换原来的jar包，可以将原来的15个jar包拷贝出来，然后将该maven打包的jar放进去即可
+这15个jar包分别是:
+catalina.jar
+catalina-ant.jar
+catalina-ha.jar
+catalina-tribes.jar
+jasper.jar
+jasper-el.jar
+tomcat7-websocket.jar
+tomcat-api.jar
+tomcat-coyote.jar
+tomcat-dbcp.jar
+tomcat-i18n-es.jar
+tomcat-i18n-fr.jar
+tomcat-i18n-ja.jar
+tomcat-jdbc.jar
+tomcat-util.jar
+
+
+
+-------------------------------------------
+
+
+
+
