@@ -37,11 +37,13 @@
             <artifactId>ant</artifactId>
             <version>1.7.0</version>
         </dependency>
+
         <dependency>
             <groupId>ant</groupId>
             <artifactId>ant-apache-log4j</artifactId>
             <version>1.6.5</version>
         </dependency>
+
         <dependency>
             <groupId>ant</groupId>
             <artifactId>ant-commons-logging</artifactId>
